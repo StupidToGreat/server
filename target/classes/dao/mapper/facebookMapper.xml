@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IFacebookDao">
+    <resultMap type="facebook" id="facebookMap">
+        <id column="fb_idx" property="fbIdx"/>
+        <result column="fb_contents" property="fbContents"/>
+        <result column="fb_date" property="fbDate"/>
+        <result column="fb_likes" property="fbLikes"/>
+        <result column="fb_shares" property="fbShares"/>
+    </resultMap>
+    <insert id="insertFacebook" parameterType="facebook"
+            useGeneratedKeys="true" keyProperty="fbIdx">
+        INSERT INTO facebook
+        VALUES (0, #{fbContents}, #{fbDate}, #{fbLikes}, #{fbShares})
+    </insert>
+    <update id="updateFacebook" parameterType="facebook">
+        UPDATE facebook SET
+        fb_contents = #{fbContents},
+        fb_date = #{fbDate},
+        fb_likes = #{fbLikes},
+        fb_shares = #{fbShares}
+        WHERE fb_idx = #{fbIdx}
+    </update>
+    <delete id="deleteFacebook" parameterType="int">
+        DELETE FROM facebook WHERE fb_idx = #{fbIdx}
+    </delete>
+    <select id="selectOne" parameterType="int" resultMap="facebookMap">
+        SELECT * FROM facebook WHERE fb_idx = #{fbIdx}
+    </select>
+    <select id="selectAll" resultMap="facebookMap">
+        SELECT * FROM facebook
+    </select>
+</mapper>

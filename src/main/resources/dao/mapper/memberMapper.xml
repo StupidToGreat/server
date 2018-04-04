@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IMemberDao">
+    <resultMap type="member" id="memberMap">
+        <id column="member_idx" property="memberIdx"/>
+        <result column="member_id" property="memberId"/>
+        <result column="member_pwd" property="memberPwd"/>
+        <result column="member_name" property="memberName"/>
+        <result column="member_gender" property="memberGender"/>
+        <result column="member_birth" property="memberBirth"/>
+        <result column="member_phonenum" property="memberPhonenum"/>
+        <result column="member_budget" property="memberBudget"/>
+        <result column="member_joindate" property="memberJoindate"/>
+    </resultMap>
+
+    <insert id="insertMember" parameterType="member"
+            useGeneratedKeys="true" keyProperty="memberIdx">
+        INSERT INTO member
+        VALUES (0, #{memberId}, #{memberPwd}, #{memberName}, #{memberGender}, #{memberBirth}, #{memberPhonenum}, #{memberBudget}, NOW())
+    </insert>
+    <update id="updateMember" parameterType="member">
+        UPDATE member SET
+        member_id = #{memberId},
+        member_pwd = #{memberPwd},
+        member_name = #{memberName},
+        member_gender = #{memberGender},
+        member_phonenum = #{memberPhonenum},
+        member_budget = #{memberBudget}
+       WHERE  member_id = #{memberId}
+    </update>
+    <delete id="deleteMember" parameterType="java.lang.Integer">
+        DELETE FROM member WHERE member_idx = #{memberIdx}
+    </delete>
+    <select id="selectOne" parameterType="String" resultMap="memberMap">
+        SELECT * FROM member WHERE member_id = #{memberId}
+    </select>
+    <select id="selectAll" resultMap="memberMap">
+        SELECT * FROM member
+    </select>
+</mapper>

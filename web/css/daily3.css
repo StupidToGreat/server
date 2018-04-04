@@ -1,0 +1,75 @@
+#sobiListDiv {
+	margin-top: 10px;
+
+       
+}
+
+.chartDiv {
+	
+}    
+
+#sobiListTable {
+	text-align: center;
+	    
+}
+
+#sobiListTable thead tr th {
+	font-size: 1em;
+	font-weight: bolder;
+	color: #667292;
+}
+
+#cateSelectDiv {
+	margin-left: 15px;
+	font-size: 14px;
+}
+
+#manjokDiv {
+	text-align: center; 
+	width: 900px;
+	height: 180px;
+	margin: 10px auto 30px auto;
+	line-height: 70%;
+    
+}  
+     
+#manjokDiv2{  
+	text-align: center; 
+	width: 900px;       
+	height: 140px;
+	margin: 10px auto 30px auto;
+	 line-height: 70%;       	
+}   
+                 
+h1.method2 {         
+	   	margin-top: -10px; 
+	font-size: 30px;
+	background: linear-gradient(to right, #30CFD0 0%, #944ee8 90%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	letter-spacing: -2px;  
+}
+   
+  
+
+
+
+#ratingDiv , #ratingfin  {
+	margin: 15px auto;
+}
+    
+    
+
+#ratingBtn {
+	font-size: 14px;
+
+}
+          
+                 
+.manjoktxt2{   
+	margin : 5px auto;
+	font-size:18px;
+	letter-spacing: -1px;   
+          
+        
+}

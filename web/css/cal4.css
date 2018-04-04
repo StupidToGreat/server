@@ -1,0 +1,113 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: baseline;
+}  
+a {     
+  text-decoration: none;   
+}                                     
+.calendar-wrapper {  
+  width: 900px;   
+  height: 800px;                    
+  margin: 0 auto;        
+  border: 1px solid #dcdcff;
+  border-radius: 5px;
+  background: #fff;
+  padding : 20px;
+  
+}
+.calendarTable {
+  clear: both;
+  width: 100%;
+  border: 1px solid #dcdcff;
+  border-radius: 3px;
+  border-collapse: collapse;
+  color: #444;
+}
+.calendarTable td {
+  height: 90px;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #dcdcff;
+  border-top: 1px solid #dcdcff;
+  width: 14.28571429%;
+}
+.calendarTable td.not-current {
+  color: #c0c0c0;
+}               
+.calendarTable td.today {
+  font-weight: 700;
+  color: #0F7DC2;
+  font-size: 1.3em;       
+} 
+                     
+
+       
+.calendarTable td.weeks{ 
+
+  height : 40px;    
+}                 
+.calendarTable thead td {
+  border: none;        
+  color: #0F7DC2;                                    
+  text-transform: uppercase;     
+  font-size: 2em;         
+  font-weight: bold;           
+   
+      
+}   
+    
+
+#btnPrev {
+  float: left;
+  margin-bottom: 20px;
+}
+#btnPrev:before {
+  content: '\f104';
+  font-family: FontAwesome;
+  padding-right: 4px;
+}
+#btnNext {
+  float: right;
+  margin-bottom: 20px;
+}
+#btnNext:after {   
+  content: '\f105';
+  font-family: FontAwesome;
+  padding-left: 4px;
+}
+#btnPrev,
+#btnNext {
+  background: transparent; 
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #c0c0c0;
+  cursor: pointer;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
+  
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+#btnPrev:hover,
+#btnNext:hover {
+  color: #28283b;
+  font-weight: bold;
+}          
+                       
+         
+.daya{        
+	color :#484f4f;
+	font-size: 15px;   
+}                           

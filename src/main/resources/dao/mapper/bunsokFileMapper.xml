@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IBunsokFileDao">
+    <resultMap type="bunsokFile" id="bunsokFileMap">
+        <id column="f_id" property="fId" />
+    </resultMap>
+
+    <insert id="insertBunsokFile" parameterType="bunsokFile" useGeneratedKeys="true"
+            keyProperty="fId">
+        insert into file values(0, #{name}, #{uri}, #{size})
+    </insert>
+    <update id="updateBunsokFile" parameterType="bunsokFile">
+        update file set name = #{name}, uri = #{uri}, size = #{size},
+        where f_id = #{fId}
+    </update>
+    <delete id="deleteBunsokFile" parameterType="java.lang.Integer">
+        delete from file where f_id = #{fId}
+    </delete>
+    <select id="selectBunsokFile" parameterType="java.lang.Integer"
+            resultMap="bunsokFileMap">
+        select * from file where f_id = #{fId}
+    </select>
+</mapper>

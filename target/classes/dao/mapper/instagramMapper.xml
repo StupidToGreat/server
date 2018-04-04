@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IInstagramDao">
+    <resultMap type="instagram" id="instagramMap">
+        <id column="insta_idx" property="instaIdx"/>
+        <result column="insta_likes" property="instaLikes"/>
+        <result column="insta_hashtag" property="instaHashtag"/>
+    </resultMap>
+    <insert id="insertInstagram" parameterType="instagram"
+            useGeneratedKeys="true" keyProperty="instaIdx">
+        INSERT INTO instagram
+        VALUES (0, #{instaLikes}, #{instaHashtag})
+    </insert>
+    <update id="updateInstagram" parameterType="instagram">
+        UPDATE instagram SET
+        insta_likes = #{instaLikes},
+        insta_hashtag = #{instaHashtag}
+        WHERE insta_idx = #{instaIdx}
+    </update>
+    <delete id="deleteInstagram" parameterType="int">
+        DELETE FROM instagram WHERE insta_idx = #{instaIdx}
+    </delete>
+    <select id="selectOne" parameterType="int" resultMap="instagramMap">
+        SELECT * FROM instagram WHERE insta_idx = #{instaIdx}
+    </select>
+    <select id="selectAll" resultMap="instagramMap">
+        SELECT * FROM instagram
+    </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ICategoryDao">
+
+    <resultMap type="category" id="categoryMap">
+        <id column="cate_idx" property="cateIdx"/>
+        <result column="cate_name" property="cateName"/>
+    </resultMap>
+
+    <insert id="insertCategory" parameterType="category"
+            useGeneratedKeys="true" keyProperty="cateIdx">
+        INSERT INTO category
+        VALUES (0, #{cateName})
+    </insert>
+    <update id="updateCategory" parameterType="category">
+        UPDATE category SET
+        cate_name = #{cateName}
+        WHERE cate_idx = #{cateIdx}
+    </update>
+    <delete id="deleteCategory" parameterType="int">
+        DELETE FROM category WHERE cate_idx = #{cateIdx}
+    </delete>
+    <select id="selectOne" parameterType="int" resultMap="categoryMap">
+        SELECT * FROM category WHERE cate_idx = #{cateIdx}
+    </select>
+    <select id="selectAll" resultMap="categoryMap">
+        SELECT * FROM category
+    </select>
+    <select id="getCategoryCount" resultType="int">
+        SELECT COUNT(*) FROM category
+    </select>
+</mapper>

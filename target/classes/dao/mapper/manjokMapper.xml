@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IManjokDao">
+    <resultMap type="manjok" id="manjokMap">
+        <id column="manjok_idx" property="manjokIdx"/>
+        <result column="manjok_score" property="manjokScore"/>
+        <result column="manjok_memberIdx" property="manjokMemberIdx"/>
+        <result column="manjok_sobiDate" property="manjokSobiDate"/>
+    </resultMap>
+
+    <select id="dailyManjokCheck" parameterType="java.util.HashMap"
+            resultType="int">
+		select count(*)
+		from manjok
+		where manjok_sobiDate = #{day}
+		and manjok_memberIdx =#{memIdx}     
+
+	</select>
+    <select id="getManjokScore" parameterType="java.util.HashMap"
+            resultType="int">
+		select manjok_score
+		from manjok
+		where manjok_sobiDate =
+		#{day}
+		and manjok_memberIdx =#{memIdx}
+
+	</select>
+    <select id="setManjokScore" parameterType="java.util.HashMap"
+            resultType="Integer">
+		insert into manjok values(0,#{score}, #{memIdx} ,#{day})
+	</select>
+    <select id="getMonthlyManjokScore" parameterType="java.util.HashMap"
+            resultType="float">
+		select IFNULL(avg(manjok_score),0)
+		from manjok
+		where
+		year(manjok_sobiDate) = #{year}
+		and month(manjok_sobiDate) = #{month}
+		and manjok_memberIdx =#{memIdx}
+	</select>
+    <select id="getManjokList" parameterType="java.util.HashMap"
+            resultMap="manjokMap">
+
+		select *
+		from manjok
+		where
+		year(manjok_sobiDate) = #{year}
+		and month(manjok_sobiDate) = #{month}
+		and manjok_memberIdx =#{memIdx}
+	</select>
+</mapper>

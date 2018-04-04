@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.IGgongDao">
+    <resultMap type="ggong" id="ggongMap">
+        <id column="ggong_idx" property="ggongIdx"/>
+        <result column="ggong_gender" property="ggongGender"/>
+        <result column="ggong_age" property="ggongAge"/>
+        <result column="ggong_budget" property="ggongBudget"/>
+        <result column="ggont_cateIdx" property="ggongCateIdx"/>
+    </resultMap>
+    <insert id="insertGgong" parameterType="ggong"
+            useGeneratedKeys="true" keyProperty="ggongIdx">
+        INSERT INTO ggong
+        VALUES (0, #{ggongGender}, #{ggongAge}, #{ggongBudget}, #{ggongCateIdx})
+    </insert>
+    <update id="updateGgong" parameterType="ggong">
+        UPDATE ggong SET
+        ggong_gender = #{ggongGender},
+        ggong_age = #{ggongAge},
+        ggong_budget = #{ggongBudget},
+        ggont_cateIdx = #{ggongCateIdx}
+        WHERE ggong_idx = #{ggongIdx}
+    </update>
+    <delete id="deleteGgong" parameterType="java.lang.Integer">
+        DELETE FROM ggong WHERE ggong_idx = #{ggongIdx}
+    </delete>
+    <select id="selectAllByAgeGender" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT * from (
+        SELECT c.cate_name as ggong_cate, SUM(g.ggong_budget) as ggong_sobi
+        FROM ggong g, category c
+        WHERE ggong_age = (
+        SELECT FLOOR((YEAR(now()) - YEAR(member_birth))/10)*10 as age FROM member WHERE member_phonenum = #{phoneNum} limit 1) AND
+        ggong_gender = (
+        SELECT member_gender as gender FROM member WHERE  member_phonenum = #{phoneNum} limit 1) AND
+        g.ggong_cateIdx = c.cate_idx
+        GROUP BY ggong_cateIdx
+        order by c.cate_name
+        )ggong inner join (
+        select c.cate_name as my_cate, IFNULL(sum(s.sobi_balance),0) as my_sobi
+        from category c left join sobi s on c.cate_name = s.sobi_cate AND s.sobi_phonenum = #{phoneNum}
+        group by c.cate_name
+        order by c.cate_name
+        )my
+        on my.my_cate = ggong.ggong_cate;
+    </select>
+    <select id="selectMyAgeGender" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select member_gender as gender, floor((year(now()) - year(member_birth))/10)*10 as age
+        from member
+        where member_phonenum = #{phoneNum} limit 1;
+    </select>
+    <select id="getSumBySameAge" parameterType="java.lang.Object" resultType="java.lang.Integer">
+        SELECT SUM(ggong_budget) as ggong_sobi
+        FROM ggong
+        WHERE ggong_age = #{age}
+        group by ggong_gender
+    </select>
+    <select id="getMyMonthSum" parameterType="java.util.HashMap" resultType="java.lang.Object">
+        select sum(sobi_balance) as my_sobi
+        from sobi
+        where sobi_phonenum = #{phoneNum} and month(sobi_date) = #{month} and year(sobi_date) = #{year}
+    </select>
+</mapper>
