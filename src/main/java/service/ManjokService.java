@@ -18,7 +18,6 @@ public class ManjokService implements IManjokService {
  
 	@Override
 	public int dailyManjokCheck(String day, int memIdx) {
-	 
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("day", day);
 		params.put("memIdx", memIdx);
@@ -63,7 +62,6 @@ public class ManjokService implements IManjokService {
 		params.put("memIdx",memIdx);
 
 		List<Manjok> manjokList = manjokDao.getManjokList(params);
-
 		return manjokList;
 	}
 

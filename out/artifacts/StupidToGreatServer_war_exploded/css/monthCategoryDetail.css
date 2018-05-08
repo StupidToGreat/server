@@ -1,0 +1,78 @@
+.piechart {
+
+	margin: 0 auto;
+	background-color: #F6F8FA;
+	 
+}
+
+.sobiListDiv {
+	margin: 30px auto;
+}
+
+.categoryDiv {
+	margin-left: 20px;
+}
+
+
+.strapline {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	
+}
+    
+.title {        
+	padding : 5px;
+	margin: 0 5px 5px 0;
+	font-size: 25px;  
+	font-weight: bold;
+	color: #ffffff;
+	flex-grow: 0;
+	background: linear-gradient(to right, rgba(68, 129, 235, 0.9), rgba(4, 190, 254, 0.9));
+	border :1px solid #dcdcff; 
+}
+
+.divider {
+	flex-grow: 1;
+	height: 1px;
+	background-color: #dcdcff;;
+}
+    
+.textDiv{                
+	width:800px;  
+	height :190px;  
+	margin: 10px auto; 
+	text-align: center;
+	font-size: 25px; 
+	color: #484f4f;
+}
+
+.cate_span{
+	font-size: 25px; 
+	font-weight :bold;
+	color: #484f4f;    
+}
+ 
+.sum_span{    
+	font-size: 32px; 
+	font-weight :bold;	
+	color:#8d9db6;
+}
+   
+.day_span{
+	font-size: 24px;   
+	color: #484f4f;
+}
+
+
+
+.cate_manjok{
+	width: 20px;
+	height: 50px;
+}
+
+#sobiTable thead tr th{
+	font-size: 1em;
+	font-weight: bolder;
+	color :#667292;
+}

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ISobiDao">
+    <resultMap type="sobi" id="sobiMap">
+        <result column="sobi_date" property="sobiDate"/>
+        <result column="sobi_balance" property="sobiBalance"/>
+        <result column="sobi_brand" property="sobiBrand"/>
+        <result column="sobi_means" property="sobiMeans"/>
+        <result column="sobi_cate" property="sobiCate"/>
+        <result column="sobi_cate2" property="sobiCate2"/>
+        <result column="sobi_cate3" property="sobiCate3"/>
+        <result column="sobi_phonenum" property="sobiPhonenum"/>
+    </resultMap>
+
+    <insert id="insertSobi" parameterType="sobi">
+        INSERT INTO sobi
+        VALUES (#{sobiDate}, #{sobiBalance}, #{sobiBrand}, #{sobiMeans}, #{sobiCate}, #{sobiCate2}, #{sobiCate3}, #{sobiPhonenum})
+    </insert>
+    <select id="selectAllByCate" parameterType="java.util.HashMap" resultMap="sobiMap">
+       SELECT * from sobi
+       WHERE year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_cate = #{cate} and sobi_phonenum = #{phoneNum}
+       order by sobi_date
+    </select>
+    <select id="selectAllByDay" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select dayname(sobi_date) as dayname, count(day(sobi_date)) as count from sobi
+        where year(sobi_date)=#{year} and month(sobi_date)=#{month} and sobi_cate = #{cate} and sobi_phonenum = #{phoneNum}
+        group by dayname(sobi_date) order by count desc limit 1;
+    </select>
+    <select id="selectAllByHour" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select hour(sobi_date) as hour, count(hour(sobi_date)) as count from sobi
+        where year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_cate = #{cate} and sobi_phonenum = #{phoneNum}
+        group by hour(sobi_date)  order by count desc limit 1;
+    </select>
+    <select id="getSobiAmount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        select sum(sobi_balance) as sum from sobi
+        where year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_cate = #{cate} and sobi_phonenum = #{phoneNum}
+    </select>
+    <select id="getSobiCountByCate" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM sobi
+        WHERE year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_cate = #{cate} and sobi_phonenum = #{phoneNum}
+    </select>
+    <select id="selectAllByCateCount" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        SELECT sobi_brand as brand, count(sobi_brand) from sobi
+        where year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_cate = #{cate} and sobi_phonenum = #{phoneNum}
+        group by sobi_brand;
+    </select>
+    <select id="selectAllSobiByCate" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select c.cate_name as my_cate, IFNULL(sum(s.sobi_balance),0) as my_sobi
+        from category c left join sobi s on c.cate_name = s.sobi_cate AND s.sobi_phonenum = #{phoneNum}
+        group by c.cate_name ORDER BY c.cate_name;
+    </select>
+    <select id="selectCountByBrand" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select sobi_brand as brand, count(*) as count
+        from sobi
+        where year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_phonenum = #{phoneNum} and sobi_cate = #{cate}
+        group by sobi_brand;
+    </select>
+
+    <select id="getCalendarList" parameterType="java.util.HashMap"
+            resultType="sobiParam">
+        select sobi_date as sobiDate,sum(sobi_balance) as balance
+        from sobi
+        where
+        year(sobi_date)= #{year}
+        and month(sobi_date)=#{month}
+        and sobi_phonenum = #{userPhone}
+        group by
+        day(sobi_date)
+    </select>
+    <select id="getDailySobiList" parameterType="java.util.HashMap"
+            resultMap="sobiMap">
+        select * from sobi
+        where sobi_date = #{day}
+        and sobi_phonenum
+        = #{userPhone}
+        order by sobi_date desc
+    </select>
+    <select id="getDailySobiListByCate" parameterType="java.util.HashMap"
+            resultMap="sobiMap">
+        select * from sobi
+        where sobi_date = #{day} and sobi_phonenum
+        = #{userPhone} and sobi_cate = #{cate}
+    </select>
+    <select id="getDailyCateChart" parameterType="java.util.HashMap"
+            resultType="sobiParam">
+        select cate_name as cateName , count(*) as cateCount,
+        IFNULL(sum(sobi_balance),0) as balance
+        from category
+        left join ( select
+        * from sobi where sobi_date =#{day} and
+        sobi_phonenum =#{userPhone})
+        as
+        s on category.cate_name = s.sobi_cate
+        group by cate_name
+        order by
+        balance desc
+    </select>
+    <select id="getMonthlySobiList" parameterType="java.util.HashMap"
+            resultMap="sobiMap">
+        select * from sobi
+        where
+        year(sobi_date)= #{year}
+        and
+        month(sobi_date)=#{month}
+        and sobi_phonenum = #{userPhone}
+        order by
+        sobi_date desc
+        <if test="skip != null and count != null">
+            LIMIT #{skip}, #{count}
+        </if>
+    </select>
+    <select id="getMonthlyCateChart" parameterType="java.util.HashMap"
+            resultType="sobiParam">
+        select cate_name as cateName , count(*) as cateCount,
+        IFNULL(sum(sobi_balance),0) as balance
+        from category
+        left join
+        ( select *
+        from sobi where
+        year(sobi_date)= #{year}
+        and month(sobi_date)=#{month}
+        and sobi_phonenum =#{userPhone})
+        as s on category.cate_name =
+        s.sobi_cate
+        group by cate_name
+        order by
+        balance desc;
+    </select>
+    <select id="getMonthlySobiListByCate" parameterType="java.util.HashMap"
+            resultMap="sobiMap">
+        select * from sobi
+        where
+        year(sobi_date)= #{year}
+        and
+        month(sobi_date)=#{month}
+        and sobi_phonenum =#{userPhone}
+        and sobi_cate
+        = #{cate}
+        order by sobi_date desc
+    </select>
+    <select id="getMonthlySobiAllCount" parameterType="java.util.HashMap"
+            resultType="Integer">
+        select count(*)
+        from sobi
+        where
+        year(sobi_date)= #{year}
+        and
+        month(sobi_date)=#{month}
+        and
+        sobi_phonenum = #{userPhone}
+        order by
+        sobi_date desc
+    </select>
+    <select id="getMonthlyReportValue" parameterType="java.util.HashMap"
+            resultType="Integer">
+
+        select IFNULL(sum(sobi_balance),0)
+        from sobi
+        where
+        sobi_phonenum =
+        #{userPhone}
+        and month(sobi_date) = month(curdate())
+        and year(sobi_date) = year(curdate())
+        and(
+        1=0
+        <if test="cate2 != null">
+            OR sobi_cate2 = #{cate2}
+        </if>
+        <if test="cate3 != null">
+            OR sobi_cate3 = #{cate3}
+        </if>
+        )
+
+    </select>
+    <select id="getMonthlyReportDate" parameterType="java.util.HashMap"
+            resultType="java.util.HashMap">
+        select count(*) as count, sobi_date , sobi_balance , sobi_brand,
+        datediff(curdate(),sobi_date) as diff
+        from sobi
+        where sobi_phonenum = #{userPhone}
+        and(
+        1=0
+        <if test="cate2 != null">
+            OR sobi_cate2 IN (#{cate2},#{cate2_2})
+        </if>
+        <if test="cate3 != null">
+            OR sobi_cate3 = #{cate3}
+        </if>
+        )
+        order by sobi_date desc
+        limit 1 ;
+
+    </select>
+    <select id="sobiList" resultType="java.util.HashMap">
+        select * from sobi
+    </select>
+    <select id="getCardUseValue" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select sobi_means2 , sum(sobi_balance) as sum
+        from sobi
+        where
+        year(sobi_date)= #{year}
+        and
+        month(sobi_date)=#{month}
+        and
+        sobi_phonenum = #{userPhone}
+        group by sobi_means2
+        order by sum desc;
+    </select>
+
+</mapper>

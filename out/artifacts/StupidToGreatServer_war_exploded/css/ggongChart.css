@@ -1,0 +1,9 @@
+#ggongTable
+{
+    margin: auto; text-align: center
+}
+#ggongTable thead tr th{
+    font-size: 1em;
+    font-weight: bolder;
+    color :#667292;
+}

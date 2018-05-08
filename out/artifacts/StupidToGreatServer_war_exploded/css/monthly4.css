@@ -1,0 +1,77 @@
+@charset "EUC-KR";
+
+#sobiListDiv {     
+	 margin-top: 60px;  
+}
+                            
+                          
+.cateBtnDiv{ 
+ 
+	margin-left: 40px;  
+}     
+
+.chartDiv{ 
+	margin-bottom: 25px; 
+} 
+
+
+#sobiListTable{ 
+    text-align: center;  
+	      
+}
+  
+#sobiListTable thead tr th{
+	font-size: 1em; 
+	font-weight: bolder; 
+	color :#667292; 
+}    
+   
+#cateSelectDiv{  
+	margin-left : 18px; 
+	font-size: 14px;    
+}
+  
+#manjokDiv {       
+	text-align: center;
+	width: 950px;   
+	height: 100px;           
+	margin: 10px auto 30px auto;
+	        
+                
+                                                    
+}                                           
+                                                                                                                  
+h1.method2 {                                 
+	font-size: 28px;     
+	font-weight: 400;                         
+	 letter-spacing: -2px;
+	background: linear-gradient(to right, #30CFD0 0%, #944ee8 90%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+#ratingDiv , #ratingfin  {
+	   
+}
+         
+                            
+                                 
+.manjoktxt2{ 
+	font-size:18px;
+                              
+}         
+               
+                        
+ #progressBar{
+ margin-left: 200px;    
+ margin-top : 15px;     
+ width : 500px;  
+ }
+          
+  #pagingDiv  {   
+  width : 100px; 
+  margin : 0 auto; 
+  text-align: center;   
+    
+   
+  }       

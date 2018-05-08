@@ -15,8 +15,7 @@
 		select count(*)
 		from manjok
 		where manjok_sobiDate = #{day}
-		and manjok_memberIdx =#{memIdx}     
-
+		and manjok_memberIdx =#{memIdx}
 	</select>
     <select id="getManjokScore" parameterType="java.util.HashMap"
             resultType="int">
@@ -25,11 +24,10 @@
 		where manjok_sobiDate =
 		#{day}
 		and manjok_memberIdx =#{memIdx}
-
 	</select>
     <select id="setManjokScore" parameterType="java.util.HashMap"
             resultType="Integer">
-		insert into manjok values(0,#{score}, #{memIdx} ,#{day})
+		insert into manjok values(0, #{score}, #{memIdx} ,#{day})
 	</select>
     <select id="getMonthlyManjokScore" parameterType="java.util.HashMap"
             resultType="float">

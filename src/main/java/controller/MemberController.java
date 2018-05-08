@@ -43,7 +43,7 @@ public class MemberController {
         }
         memberService.join(member);
 
-        return "main";
+        return "login";
     }
 
     /**
@@ -106,7 +106,7 @@ public class MemberController {
     public
     @ResponseBody
     HashMap<String, Object> loginWithSNS(HttpSession session, String email, String name, String gender) {
-        System.out.println(gender);
+//        System.out.println(gender);
         HashMap<String, Object> response = new HashMap<>();
         if (memberService.checkId(email)) {
             session.setAttribute("id", email);
