@@ -118,29 +118,29 @@
                     <i class="bar chart icon"></i>
                     월간 보고서
                 </h4>
-                <%--<div class="row" id="cardChartDiv">--%>
-                    <%--<div class="col-lg-6 grid-margin ">--%>
-                        <%--<canvas id="doughnutChart"--%>
-                                <%--style="height: 200px; "></canvas>--%>
-                    <%--</div>--%>
-                    <%--<div class="col-lg-6 grid-margin" id="cardListDiv">--%>
-                        <%--<h4 class="ui header" id="label">--%>
-                            <%--<i class="credit blue card alternative icon"></i>--%>
-                            <%--카드 사용순위</h4>--%>
-                        <%--<table class="ui blue table" id="cardRankTable">--%>
-                            <%--<thead>--%>
-                            <%--<tr>--%>
-                                <%--<th>Rank</th>--%>
-                                <%--<th>Card</th>--%>
-                                <%--<th>Total</th>--%>
-                            <%--</tr>--%>
-                            <%--</thead>--%>
-                            <%--<tbody>--%>
+                <div class="row" id="cardChartDiv">
+                    <div class="col-lg-6 grid-margin ">
+                        <canvas id="doughnutChart"
+                                style="height: 200px; "></canvas>
+                    </div>
+                    <div class="col-lg-6 grid-margin" id="cardListDiv">
+                        <h4 class="ui header" id="label">
+                            <i class="credit blue card alternative icon"></i>
+                            카드 사용순위</h4>
+                        <table class="ui blue table" id="cardRankTable">
+                            <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Card</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
                 <br>
                 <div class="row ui link cards cardDiv">
