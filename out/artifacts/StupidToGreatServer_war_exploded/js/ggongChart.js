@@ -57,8 +57,8 @@ function showGgongListTable(data) {
         $('tbody').append(
             "<tr><td>" + item.ggong_cate + "</td>" +
             // "<td>" + calculateSobi(item.ggong_sobi, item.my_sobi) + "</td>" +
-            calculateSobi(Math.round(item.ggong_sobi/12), item.my_sobi) +
-            "<td>" + Math.round(item.ggong_sobi/12) + "</td></tr>");
+            calculateSobi(item.ggong_sobi, item.my_sobi) +
+            "<td>" + item.ggong_sobi + "</td></tr>");
     });
 }
 
@@ -72,7 +72,6 @@ function calculateSobi(ggs, mys) {
     // i = "<i class= \"red caret up icon\">"+String(mys-ggs) +"</i>";
     else if ((ggs - mys) > 0)
         i = "<td style='color: dodgerblue'><i class = \"blue caret down icon\"/>" + String(ggs - mys) + "</td>";
-
     return i;
 }
 

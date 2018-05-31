@@ -9,24 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>직접입력</title>
     <!-- plugins:css -->
-    <link rel="stylesheet"
-          href="../../node_modules/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet"
-          href="../../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
-    <!-- endinject -->
-    <!-- plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../css/cash.css">
-    <link rel="stylesheet" href="../../css/semanticCalendar.css">
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <!-- endinject -->
-    <link rel="stylesheet" type="text/css"
-          href="../semantic/components/icon.css">
+    <link rel="stylesheet" href="../../node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
 
-    <link rel="shortcut icon" href="../images/favicon.png"/>
-    <link rel="stylesheet" href="../../css/icon.css"/>
+
+    <%--<link rel="stylesheet" href="../../css/style.css">--%>
+    <%--<link rel="stylesheet" href="../../css/cashInputForm.css">--%>
+    <link rel="stylesheet" href="../../css/semanticCalendar.css">
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <!-- endinject -->
+    <link rel="stylesheet" type="text/css" href="../../css/icon.css">
+    <%--<link rel="stylesheet" href="../../css/icon.css"/>--%>
 </head>
 <body>
 <div class="container-scroller">
@@ -99,29 +95,14 @@
                             </select>
                         </div>
                     </div>
-                    <div class="field">
-                        <label>소비방식</label>
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="means">
-                            <div class="default text">소비방식</div>
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <div class="item" data-value="cash">
-                                    <i class="money icon"></i> 현금
-                                </div>
-                                <div class="item" data-value="check">
-                                    <i class="amex icon"></i> 체크카드
-                                </div>
-                                <div class="item" data-value="credit">
-                                    <i class="credit card alternative icon"></i> 신용카드
-                                </div>
-                                <div class="item" data-value="phone">
-                                    <i class="call icon"></i> 휴대폰 간편결제
-                                </div>
-                                <div class="item" data-value="bank">
-                                    <i class="desktop icon"></i> 은행 계좌이체
-                                </div>
-                            </div>
+                    <div class="row">
+                        <div class="field col-md-3">
+                            <label>소비방식</label>
+                            <select id="means" name="means"></select>
+                        </div>
+                        <div class="field col-md-3" style="margin-left: 80px;">
+                            <label>카드종류</label>
+                            <select id="means2" name="means2"></select>
                         </div>
                     </div>
                     <div class="field submitbtnDiv">
@@ -142,8 +123,7 @@
 <!-- plugins:js -->
 <script src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script
-        src="../../node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page-->
 
@@ -153,7 +133,7 @@
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script type="text/javascript" src="../../js/semanticCalendar.js"></script>
-<script src="../../js/cashInputForm.js?version=1"></script>
+<script src="../../js/cashInputForm.js?version=3"></script>
 <!-- End custom js for this page-->
 <script>
     $('#example1').calendar();

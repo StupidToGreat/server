@@ -8,6 +8,7 @@
         <result column="sobi_balance" property="sobiBalance"/>
         <result column="sobi_brand" property="sobiBrand"/>
         <result column="sobi_means" property="sobiMeans"/>
+        <result column="sobi_means2" property="sobiMeans2"/>
         <result column="sobi_cate" property="sobiCate"/>
         <result column="sobi_cate2" property="sobiCate2"/>
         <result column="sobi_cate3" property="sobiCate3"/>
@@ -16,7 +17,7 @@
 
     <insert id="insertSobi" parameterType="sobi">
         INSERT INTO sobi
-        VALUES (#{sobiDate}, #{sobiBalance}, #{sobiBrand}, #{sobiMeans}, #{sobiCate}, #{sobiCate2}, #{sobiCate3}, #{sobiPhonenum})
+        VALUES (#{sobiDate}, #{sobiBalance}, #{sobiBrand}, #{sobiMeans}, #{sobiMeans2}, #{sobiCate}, #{sobiCate2}, #{sobiCate3}, #{sobiPhonenum})
     </insert>
     <select id="selectAllByCate" parameterType="java.util.HashMap" resultMap="sobiMap">
        SELECT * from sobi
@@ -57,7 +58,6 @@
         where year(sobi_date) = #{year} and month(sobi_date) = #{month} and sobi_phonenum = #{phoneNum} and sobi_cate = #{cate}
         group by sobi_brand;
     </select>
-
     <select id="getCalendarList" parameterType="java.util.HashMap"
             resultType="sobiParam">
         select sobi_date as sobiDate,sum(sobi_balance) as balance
@@ -72,7 +72,7 @@
     <select id="getDailySobiList" parameterType="java.util.HashMap"
             resultMap="sobiMap">
         select * from sobi
-        where sobi_date = #{day}
+        where date(sobi_date) = #{day}
         and sobi_phonenum
         = #{userPhone}
         order by sobi_date desc
@@ -80,7 +80,7 @@
     <select id="getDailySobiListByCate" parameterType="java.util.HashMap"
             resultMap="sobiMap">
         select * from sobi
-        where sobi_date = #{day} and sobi_phonenum
+        where date(sobi_date) = #{day} and sobi_phonenum
         = #{userPhone} and sobi_cate = #{cate}
     </select>
     <select id="getDailyCateChart" parameterType="java.util.HashMap"
@@ -89,7 +89,7 @@
         IFNULL(sum(sobi_balance),0) as balance
         from category
         left join ( select
-        * from sobi where sobi_date =#{day} and
+        * from sobi where date(sobi_date)=#{day} and
         sobi_phonenum =#{userPhone})
         as
         s on category.cate_name = s.sobi_cate
@@ -155,7 +155,6 @@
     </select>
     <select id="getMonthlyReportValue" parameterType="java.util.HashMap"
             resultType="Integer">
-
         select IFNULL(sum(sobi_balance),0)
         from sobi
         where
@@ -208,5 +207,4 @@
         group by sobi_means2
         order by sum desc;
     </select>
-
 </mapper>

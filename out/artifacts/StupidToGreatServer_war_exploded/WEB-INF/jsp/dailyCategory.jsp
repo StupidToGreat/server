@@ -30,7 +30,6 @@
 </head>
 <body>
 <input type="hidden" id="day" value=${day}>
-<input type="hidden" id="userPhone" value=${member.memberPhonenum}>
 <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
     <jsp:include page="partial/navbar.jsp"/>
@@ -45,16 +44,14 @@
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body" style="background-color: #fff;">
-                                <canvas id="barChart"
-                                        style="height: 250px; background-color: #fff;"></canvas>
+                                <canvas id="barChart" style="height: 250px; background-color: #fff;"></canvas>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body" style="background-color: #fff;">
-                                <canvas id="pieChart"
-                                        style="height: 250px; background-color: #fff;"></canvas>
+                                <canvas id="pieChart" style="height: 250px; background-color: #fff;"></canvas>
                             </div>
                         </div>
                     </div>
@@ -136,7 +133,7 @@
 <script src="../../js/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../../js/daily4.js?version=2"></script>
+<script src="../../js/daily4.js?version=3"></script>
 <script src="../../js/semantic.js"></script>
 <script>
     $('.ui.rating').rating({

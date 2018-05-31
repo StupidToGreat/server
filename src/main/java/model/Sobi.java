@@ -9,6 +9,7 @@ public class Sobi {
     private int sobiBalance;
     private String sobiBrand;
     private String sobiMeans;
+    private String sobiMeans2;
     private String sobiCate;
     private String sobiCate2;
     private String sobiCate3;
@@ -40,6 +41,14 @@ public class Sobi {
 
     public String getSobiMeans() {
         return sobiMeans;
+    }
+
+    public String getSobiMeans2() {
+        return sobiMeans2;
+    }
+
+    public void setSobiMeans2(String sobiMeans2) {
+        this.sobiMeans2 = sobiMeans2;
     }
 
     public void setSobiMeans(String sobiMeans) {

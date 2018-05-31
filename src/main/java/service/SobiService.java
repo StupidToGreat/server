@@ -19,7 +19,7 @@ public class SobiService implements ISobiService {
     private IBunsokFileDao bunsokFileDao;
 
     @Override
-    public int insertSobi(String stringDate, int balance, String brand, String means, String cate1, String cate2,
+    public int insertSobi(String stringDate, int balance, String brand, String means, String means2, String cate1, String cate2,
                           String cate3, String phoneNum) {
         int mon = stringDate.indexOf(' ');
         String month = stringDate.substring(0, mon);
@@ -85,6 +85,7 @@ public class SobiService implements ISobiService {
         addSobi.setSobiCate3(cate3);
         addSobi.setSobiDate(date);
         addSobi.setSobiMeans(means);
+        addSobi.setSobiMeans2(means2);
         addSobi.setSobiPhonenum(phoneNum);
 
         return sobiDao.insertSobi(addSobi);

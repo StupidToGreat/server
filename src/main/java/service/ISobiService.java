@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface ISobiService {
-    public int insertSobi(String stringDate, int balance, String brand, String means, String cate, String cate2, String cate3, String phoneNum);
+    public int insertSobi(String stringDate, int balance, String brand, String means, String means2, String cate, String cate2, String cate3, String phoneNum);
 
     public int getSobiSum(String year, String month, String cate, String phoneNum);
 

@@ -16,10 +16,9 @@ window.onload = function () {
     $('#cateSelect').on('change', function () {
         var cate = this.value;
         var day = $('#day').val();
-        var userPhone = $('#userPhone').val();
 
         if (cate == 'all') {
-            var params = "day=" + day + "&userPhone=" + userPhone;
+            var params = "day=" + day;
 
             $.ajax({
                 url: 'getdailyChart.do',
@@ -31,7 +30,7 @@ window.onload = function () {
                 }
             });
         } else {
-            var params = "day=" + day + "&userPhone=" + userPhone + "&cate=" + cate;
+            var params = "day=" + day + "&cate=" + cate;
 
             $.ajax({
                 url: 'getDailyListByCate.do',
@@ -51,8 +50,7 @@ window.onload = function () {
 
 function alldata() {
     var day = $('#day').val();
-    var userPhone = $('#userPhone').val();
-    var params = "day=" + day + "&userPhone=" + userPhone;
+    var params = "day=" + day;
 
     $.ajax({
         url: 'getdailyChart.do',
@@ -61,6 +59,7 @@ function alldata() {
         success: function (data) {
             var sobiList = data.sobiList;
             var sobiParam = data.sobiParam;
+
             showchartUpload(sobiParam);
             showSobiListTable(sobiList);
         }

@@ -149,6 +149,7 @@ public class SobiController {
      * @param balance
      * @param brand
      * @param means
+     * @param means2
      * @param cate1
      * @param cate2
      * @param cate3
@@ -156,12 +157,26 @@ public class SobiController {
      * @throws ParseException
      */
     @RequestMapping("cashInput.do")
-    public @ResponseBody
-    String castInput(HttpServletRequest request, String date, int balance, String brand, String means, String cate1, String cate2, String cate3) throws ParseException {
+    public String castInput(HttpServletRequest request, String date, int balance, String brand, String means, String means2, String cate1, String cate2, String cate3) throws ParseException {
         Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
-        sobiService.insertSobi(date, balance, brand, means, cate1, cate2, cate3, member.getMemberPhonenum());
 
-        return "main";
+        if (cate1.equals("외식"))
+            cate1 = "eatout";
+        else if(cate1.equals("마켓/편의점"))
+            cate1 = "market";
+        else if(cate1.equals("쇼핑"))
+            cate1 = "shop";
+        else if(cate1.equals("교통"))
+            cate1 = "trans";
+        else if(cate1.equals("생활비"))
+            cate1 = "life";
+        else if(cate1.equals("문화생활"))
+            cate1 = "interest";
+        else if(cate1.equals("기타"))
+            cate1 = "etc";
+        sobiService.insertSobi(date, balance, brand, means, means2, cate1, cate2, cate3, member.getMemberPhonenum());
+
+        return "redirect:main.do";
     }
 
     /**
@@ -221,9 +236,11 @@ public class SobiController {
 
     @RequestMapping(value = "getdailyChart.do", produces = {"application/json"})
     public @ResponseBody
-    HashMap<String, Object> getDailyChartValue(String day, String userPhone) {
-        List<Sobi> sobiList = sobiService.getDailySobiList(day, userPhone);
-        List<sobiParam> sobiParam = sobiService.getDailyCateChart(day, userPhone);
+    HashMap<String, Object> getDailyChartValue(HttpServletRequest request, String day) throws ParseException{
+        Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
+
+        List<Sobi> sobiList = sobiService.getDailySobiList(day, member.getMemberPhonenum());
+        List<sobiParam> sobiParam = sobiService.getDailyCateChart(day, member.getMemberPhonenum());
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("sobiList", sobiList);
@@ -234,8 +251,10 @@ public class SobiController {
 
     @RequestMapping(value = "getDailyListByCate.do", produces = {"application/json"})
     public @ResponseBody
-    List<Sobi> getDailyListByCate(String day, String userPhone, String cate) {
-        List<Sobi> sobiList = sobiService.getDailySobiListByCate(day, userPhone, cate);
+    List<Sobi> getDailyListByCate(HttpServletRequest request, String day, String cate) {
+        Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
+
+        List<Sobi> sobiList = sobiService.getDailySobiListByCate(day, member.getMemberPhonenum(), cate);
 
         return sobiList;
     }
@@ -260,11 +279,12 @@ public class SobiController {
 
     @RequestMapping(value = "getMonthlyChart.do", produces = {"application/json"})
     public @ResponseBody
-    HashMap<String, Object> getMonthlyChartValue(String year, String month, String userPhone) {
+    HashMap<String, Object> getMonthlyChartValue(HttpServletRequest request, String year, String month) {
+        Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
         int y = Integer.parseInt(year);
         int m = Integer.parseInt(month);
 
-        List<sobiParam> sobiChart = sobiService.getMonthlyCateChart(y, m, userPhone);
+        List<sobiParam> sobiChart = sobiService.getMonthlyCateChart(y, m, member.getMemberPhonenum());
         HashMap<String, Object> result = new HashMap<>();
         result.put("sobiChart", sobiChart);
 
@@ -273,11 +293,12 @@ public class SobiController {
 
     @RequestMapping(value = "getMonthlyListByCate.do", produces = {"application/json"})
     public @ResponseBody
-    List<Sobi> getMonthlyListByCate(String year, String month, String userPhone, String cate) {
+    List<Sobi> getMonthlyListByCate(HttpServletRequest request, String year, String month, String cate) {
+        Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
         int y = Integer.parseInt(year);
         int m = Integer.parseInt(month);
 
-        List<Sobi> sobiList = sobiService.getMonthlySobiListByCate(y, m, userPhone, cate);
+        List<Sobi> sobiList = sobiService.getMonthlySobiListByCate(y, m, member.getMemberPhonenum(), cate);
 
         return sobiList;
     }
@@ -323,9 +344,8 @@ public class SobiController {
         int y = Integer.parseInt(year);
         int m = Integer.parseInt(month);
         Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
-        String userPhone = member.getMemberPhonenum();
 
-        List<HashMap<String, Object>> cardList = sobiService.getCardUseValue(y, m + 1, userPhone);
+        List<HashMap<String, Object>> cardList = sobiService.getCardUseValue(y, m + 1, member.getMemberPhonenum());
 
 
         return cardList;

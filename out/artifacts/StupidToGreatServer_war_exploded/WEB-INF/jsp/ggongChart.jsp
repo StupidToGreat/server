@@ -69,7 +69,7 @@
 <script src="../../js/semantic.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../../js/ggongChart.js?version=10"></script>
+<script src="../../js/ggongChart.js?version=11"></script>
 <!-- End custom js for this page-->
 </body>
 
