@@ -90,18 +90,18 @@
                     </div>
                 </div>
 
-                <h4 class="ui horizontal divider header">
-                    <i class="instagram pink icon"></i>
-                    인스타그램 분석
-                </h4>
-                <div class="ui grid analDiv">
-                    <div class="eight wide column">
-                        <img width="500" height="320" alt="" src="../../images/report/i1.jpeg"/>
-                    </div>
-                    <div class="eight wide column">
-                        <img width="500" height="320" alt="" src="../../images/report/i2.jpg"/>
-                    </div>
-                </div>
+                <%--<h4 class="ui horizontal divider header">--%>
+                    <%--<i class="instagram pink icon"></i>--%>
+                    <%--인스타그램 분석--%>
+                <%--</h4>--%>
+                <%--<div class="ui grid analDiv">--%>
+                    <%--<div class="eight wide column">--%>
+                        <%--<img width="500" height="320" alt="" src="../../images/report/i1.jpeg"/>--%>
+                    <%--</div>--%>
+                    <%--<div class="eight wide column">--%>
+                        <%--<img width="500" height="320" alt="" src="../../images/report/i2.jpg"/>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </div>
             <!-- content-wrapper ends -->
             <!-- partial:../../partials/_footer.html -->
