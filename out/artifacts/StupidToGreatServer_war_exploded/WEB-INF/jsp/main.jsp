@@ -97,10 +97,10 @@
                     <div class="col-md-5 stretch-card grid-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">SNS 소비트랜드</h4>
+                                <h4 class="card-title">SNS 소비트렌드</h4>
                                 <img class="ui medium rounded image" src="../../images/sns/twitter_bird.png"><br>
                                 <div class="column">
-                                    <h3>"SNS에서 트랜드를 찾았어요"</h3>
+                                    <h3>"SNS에서 트렌드를 찾았어요"</h3>
                                     <p>
                                         내가 소비한 카테고리가 SNS에서 어떤 단어로 <b>검색</b>이 많이 되었을까요
                                     </p>
@@ -135,7 +135,7 @@
 <!-- inject:js -->
 <script src="../../js/off-canvas.js"></script>
 <script src="../../js/misc.js"></script>
-<script src="../../js/semantic.js"></script>
+<script src="../../js/semantic.js?version=3"></script>
 <script src="../../js/dashboard.js"></script>
 <!-- endinject -->
 <script type="text/javascript">
