@@ -357,4 +357,23 @@ public class SobiController {
         File file = new File(bunsokFile.getUri());
         return new DownloadView(file, bunsokFile.getName());
     }
+
+    @RequestMapping(value = "budgetProgress.do", produces = {"application/json"})
+    public @ResponseBody List<HashMap<String, Object>> budgetProgress(HttpServletRequest request, String year, String month){
+        Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
+        int y = Integer.parseInt(year);
+        int m = Integer.parseInt(month);
+
+        List<HashMap<String, Object>> bp = sobiService.budgetProgress(y, m, member.getMemberPhonenum());
+        return bp;
+    }
+
+    @RequestMapping("snsTrend.do")
+    public String snsTrend(HttpServletRequest request, Model model) {
+        Member member = memberService.getMemberOne((String) request.getSession().getAttribute("id"));
+        model.addAllAttributes(sobiService.getMonthlyReportValue(member.getMemberPhonenum()));
+
+        return "snsTrend";
+    }
+
 }

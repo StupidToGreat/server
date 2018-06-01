@@ -45,4 +45,6 @@ public interface ISobiService {
     public List<HashMap<String, Object>> getCardUseValue(int year, int month, String userPhone);
 
     public BunsokFile getBunsokFile(int fId);
+
+    public List<HashMap<String, Object>> budgetProgress(int year, int month, String userPhone);
 }

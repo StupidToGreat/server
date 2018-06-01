@@ -376,4 +376,18 @@ public class SobiService implements ISobiService {
         BunsokFile bunsokFile = bunsokFileDao.selectBunsokFile(fId);
         return bunsokFile;
     }
+
+    @Override
+    public List<HashMap<String, Object>> budgetProgress(int year, int month, String userPhone) {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("year", year);
+        params.put("month", month);
+        params.put("userPhone", userPhone);
+
+        List<HashMap<String,Object>> bp = sobiDao.budgetProgress(params);
+
+        return bp;
+    }
+
+
 }

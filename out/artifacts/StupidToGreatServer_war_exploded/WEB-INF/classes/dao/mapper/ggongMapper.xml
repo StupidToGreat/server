@@ -40,6 +40,7 @@
         )ggong inner join (
         select c.cate_name as my_cate, IFNULL(sum(s.sobi_balance),0) as my_sobi
         from category c left join sobi s on c.cate_name = s.sobi_cate AND s.sobi_phonenum = #{phoneNum}
+        where month(s.sobi_date) = month(now())
         group by c.cate_name
         order by c.cate_name
         )my

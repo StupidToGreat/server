@@ -8,37 +8,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
     <title>Insert title here</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../node_modules/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="../../../node_modules/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../../../node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../../css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../images/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="../css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../../../css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/semantic.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/progress.css"/>
     <script
             src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var dt = new Date();
-
-            $.ajax({
-                url: 'getMonthlyList.do',
-                data: {
-                    year: dt.getFullYear(),
-                    month: dt.getMonth() + 1
-                },
-                dataType: 'json',
-                success: function (data) {
-                    $('#progressDiv').attr('aria-valuenow', Math.round((data.sum/data.budget)*100));
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -74,6 +58,7 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="/monthlyReport.do">월간 보고서</a></li>
                     <li class="nav-item"><a class="nav-link" href="/ggongChart.do">나의 소비그룹 비교</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/snsTrend.do">SNS 소비트랜드</a></li>
                     <%--<li class="nav-item"><a class="nav-link" href="/trendAnalysis.do">트랜드 분석</a></li>--%>
                 </ul>
             </div>
@@ -84,15 +69,15 @@
                 class="mdi mdi-calendar"></i>
         </a></li>
     </ul>
-    <div class="sidebar-progress">
-        <p>목표금액까지..</p>
-        <div class="progress progress-sm">
-            <%--aria-valuenow="72" aria-valuemax="100"--%>
-            <div class="progress-bar bg-gradient-success" id="progressDiv" role="progressbar"
-                 style="width: 72%" aria-valuemax="100" aria-valuemin="0"></div>
-        </div>
-        <p>${msg}</p>
-    </div>
 </nav>
+<script src="../../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../../node_modules/popper.js/dist/umd/popper.min.js"></script>
+<script src="../../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../../node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+<!-- endinject -->
+<script src="../../../js/off-canvas.js"></script>
+<script src="../../../js/misc.js"></script>
+<script src="../../../js/semantic.js"></script>
+<!-- endinject -->
 </body>
 </html>

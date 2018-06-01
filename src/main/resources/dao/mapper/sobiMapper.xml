@@ -204,7 +204,15 @@
         month(sobi_date)=#{month}
         and
         sobi_phonenum = #{userPhone}
+        AND
+        sobi_means2 IS NOT NULL
         group by sobi_means2
         order by sum desc;
+    </select>
+    <select id="budgetProgress" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select m.member_budget as budget, sum(s.sobi_balance) as sumSobi
+        from member m, sobi s
+        where m.member_phonenum = #{userPhone}
+        and m.member_phonenum = s.sobi_phonenum and year(s.sobi_date) = #{year} and month(s.sobi_date) = #{month};
     </select>
 </mapper>

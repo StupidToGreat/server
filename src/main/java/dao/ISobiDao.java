@@ -48,4 +48,6 @@ public interface ISobiDao {
     public HashMap<String, Object> getMonthlyReportDate(HashMap<String, Object> params);
 
     public List<HashMap<String, Object>> getCardUseValue(HashMap<String, Object> params);
+
+    public List<HashMap<String,Object>> budgetProgress(HashMap<String, Object> params);
 }
