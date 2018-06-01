@@ -124,6 +124,7 @@ window.onload = function () {
     $('#means').append(
         "<option class=\"item\" data-value=\"cash\">현금</option>\n" +
         "<option class=\"item\" data-value=\"check\">체크카드</option>\n" +
+        "<option class=\"item\" data-value=\"credit\">신용카드</option>\n" +
         "<option class=\"item\" data-value=\"phone\">휴대폰 간편결제</option>\n" +
         "<option class=\"item\" data-value=\"bank\">은행 계좌이체</option>\n" +
         "<option class=\"item\" data-value=\"life\">생활비</option>\n" +
